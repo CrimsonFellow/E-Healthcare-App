@@ -15,3 +15,4 @@ COPY --from=angular-build /app/dist/healthcare-app/browser /app/static/
 
 EXPOSE 8081
 ENTRYPOINT ["java", "-jar", "app.jar"]
+

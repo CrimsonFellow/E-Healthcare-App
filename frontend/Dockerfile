@@ -32,3 +32,4 @@ EXPOSE 8081
 CMD ["http-server", "/usr/share/healthcare-app", "-p", "8081"]
 
 
+
