@@ -1,0 +1,89 @@
+<!-- medicines.component.html -->
+<h2>Manage Medicines</h2>
+
+<!-- Back to Dashboard Button -->
+<button class="back-button" (click)="goBack()">Back to Dashboard</button>
+
+<form (submit)="saveMedicine()">
+  <div class="form-group">
+    <label for="name">Medicine Name:</label>
+    <input
+      id="name"
+      [(ngModel)]="newMedicine.name"
+      name="name"
+      placeholder="Enter medicine name"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="brand">Brand:</label>
+    <select
+      id="brand"
+      [(ngModel)]="newMedicine.brand"
+      name="brand"
+      required
+    >
+      <option [ngValue]="null" disabled selected>Select a brand</option>
+      <option *ngFor="let brand of brands" [ngValue]="brand">
+        {{ brand.name }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <input
+      id="description"
+      [(ngModel)]="newMedicine.description"
+      name="description"
+      placeholder="Enter description"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="price">Price:</label>
+    <input
+      id="price"
+      [(ngModel)]="newMedicine.price"
+      name="price"
+      type="number"
+      placeholder="Enter price"
+      required
+    />
+  </div>
+  <div class="button-group">
+    <button type="submit">{{ isEditing ? 'Update' : 'Add' }} Medicine</button>
+    <button type="button" (click)="cancelEdit()" *ngIf="isEditing">
+      Cancel
+    </button>
+  </div>
+</form>
+
+<hr />
+
+<h3>Existing Medicines</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Brand</th>
+      <th>Description</th>
+      <th>Price ($)</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let medicine of medicines">
+      <td>{{ medicine.name }}</td>
+      <td>{{ medicine.brand?.name }}</td>
+      <td>{{ medicine.description }}</td>
+      <td>{{ medicine.price }}</td>
+      <td>
+        <!-- Added specific classes to buttons -->
+        <button class="edit-button" (click)="editMedicine(medicine)">Edit</button>
+        <button class="delete-button" (click)="deleteMedicine(medicine)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+

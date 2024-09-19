@@ -1,0 +1,58 @@
+<div class="medicine-list-container">
+  
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+  
+  <!-- Header Section -->
+  <header class="header">
+    <h1 class="app-title">Medical Portal</h1>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </header>
+  
+  <!-- Main Content -->
+  <div class="content">
+    <h2 class="section-title">Available Medicines</h2>
+    
+    <!-- Navigation Button -->
+    <div class="nav-buttons">
+      <button class="go-to-cart" [routerLink]="['/cart']">
+        🛒 Go to Cart
+      </button>
+    </div>
+  
+    <!-- Medicines Table -->
+    <table class="medicine-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Brand</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medicine of medicines">
+          <td>{{ medicine.name }}</td>
+          <td>{{ medicine.description }}</td>
+          <td>{{ medicine.brand?.name }}</td>
+          <td>${{ medicine.price }}</td>
+          <td>
+            <button class="view-details-btn" (click)="viewDetails(medicine)">
+              🔍 View Details
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</div>
+
+
+
+
+
+

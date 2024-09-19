@@ -1,0 +1,60 @@
+<div class="cart-container">
+  
+  <!-- Header Section -->
+  <header class="header">
+    <h1 class="component-title">Your Cart</h1>
+    <button class="back-to-menu-btn" (click)="backToMenu()" aria-label="Back to Menu">&#8592; Back to Menu</button>
+  </header>
+  
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="loader-container">
+    <div class="loader"></div>
+  </div>
+  
+  <!-- Cart Items Table -->
+  <div *ngIf="!isLoading && cart.length > 0" class="cart-content">
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Medicine</th>
+          <th>Description</th>
+          <th>Brand</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cart">
+          <td>{{ item.medicine.name }}</td>
+          <td>{{ item.medicine.description }}</td>
+          <td>{{ item.medicine.brand?.name }}</td>
+          <td>${{ item.medicine.price.toFixed(2) }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>${{ (item.medicine.price * item.quantity).toFixed(2) }}</td>
+          <td>
+            <button class="remove-btn" (click)="removeFromCart(item.id)">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <!-- Total Price and Action Buttons -->
+    <div class="cart-summary">
+      <div class="total">
+        <strong>Total Price:</strong> ${{ totalPrice.toFixed(2) }}
+      </div>
+      <div class="actions">
+        <button class="place-order-btn" (click)="placeOrder()">Confirm Order</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- No Items Message -->
+  <div *ngIf="!isLoading && cart.length === 0" class="no-items">
+    <p>Your cart is currently empty.</p>
+  </div>
+  
+</div>
+

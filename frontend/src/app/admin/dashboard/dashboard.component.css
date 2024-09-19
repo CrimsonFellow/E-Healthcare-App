@@ -1,0 +1,91 @@
+/* dashboard.component.css */
+
+/* General Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(to bottom right, #6a11cb, #2575fc);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.menu-item {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  text-decoration: none;
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 0.3s, background-color 0.3s;
+  backdrop-filter: blur(10px);
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-10px);
+}
+
+.menu-icon {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.menu-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .menu-item {
+    padding: 30px;
+  }
+
+  .menu-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+  }
+
+  .menu-text {
+    font-size: 20px;
+  }
+}
+/* Logout Button Styles */
+.logout-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.logout-button {
+  background-color: #dc3545; /* Red color */
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.logout-button:hover {
+  background-color: #c82333; /* Darker red on hover */
+}

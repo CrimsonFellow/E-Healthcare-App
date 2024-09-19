@@ -1,0 +1,240 @@
+/* Overall Container */
+.cart-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e8f5e9; /* Very Light Green Background */
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Header Section */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2e7d32; /* Dark Green */
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+  }
+  
+  .component-title {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .back-to-menu-btn {
+    background-color: #66bb6a; /* Medium Green */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .back-to-menu-btn:hover {
+    background-color: #57a05a; /* Darker Green on Hover */
+  }
+  
+  /* Loader Styles */
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+  }
+  
+  .loader {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #2e7d32; /* Dark green */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Cart Content */
+  .cart-content {
+    margin-top: 30px;
+  }
+  
+  /* Cart Table */
+  .cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cart-table thead {
+    background-color: #a5d6a7; /* Light Green Header */
+  }
+  
+  .cart-table th, .cart-table td {
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  .cart-table th {
+    color: #2e7d32; /* Dark Green */
+    font-weight: bold;
+  }
+  
+  .cart-table tbody tr:nth-child(even) {
+    background-color: #f1f8e9; /* Lightest Green for Even Rows */
+  }
+  
+  .cart-table tbody tr:hover {
+    background-color: #c8e6c9; /* Hover Effect */
+  }
+  
+  /* Action Buttons */
+  .remove-btn {
+    background-color: #ef5350; /* Red for Remove */
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  .remove-btn:hover {
+    background-color: #d32f2f; /* Darker Red on Hover */
+  }
+  
+  /* Cart Summary */
+  .cart-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .total {
+    font-size: 20px;
+    color: #2e7d32; /* Dark Green */
+  }
+  
+  .actions {
+    text-align: right;
+  }
+  
+  .place-order-btn {
+    background-color: #66bb6a; /* Medium Green */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .place-order-btn:hover {
+    background-color: #57a05a; /* Darker Green on Hover */
+  }
+  
+  /* No Items Message */
+  .no-items {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 18px;
+    color: #2e7d32; /* Dark Green */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .cart-summary {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .total {
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+  
+    .place-order-btn {
+      width: 100%;
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .back-to-menu-btn {
+      margin-top: 10px;
+      width: 100%;
+    }
+  
+    .nav-buttons {
+      text-align: center;
+    }
+  
+    .go-to-cart {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .cart-table, .cart-table thead, .cart-table tbody, .cart-table th, .cart-table td, .cart-table tr {
+      display: block;
+    }
+  
+    .cart-table thead tr {
+      display: none;
+    }
+  
+    .cart-table tbody tr {
+      margin-bottom: 15px;
+      border: 1px solid #a5d6a7;
+      border-radius: 8px;
+      padding: 10px;
+      background-color: white;
+    }
+  
+    .cart-table tbody td {
+      padding: 8px 12px;
+      position: relative;
+    }
+  
+    .cart-table tbody td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+  
+    .remove-btn, .place-order-btn {
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 10px;
+    }
+  
+    .total {
+      font-size: 16px;
+    }
+  
+    .success-message {
+      font-size: 16px; /* Slightly larger font for mobile */
+    }
+  }
+  
+  

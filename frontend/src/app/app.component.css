@@ -1,0 +1,30 @@
+/* app.component.css */
+
+/* General Styles */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Container for the entire app */
+.app-container {
+  min-height: 100vh;
+}
+
+/* Header styling */
+.admin-heading {
+  background-image: linear-gradient(to bottom right, #6a11cb, #2575fc);
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 40px 0;
+  font-size: 48px;
+}
+
+/* Content container */
+.content-container {
+  background-color: #fff; /* Set background to white */
+  padding: 20px;
+}

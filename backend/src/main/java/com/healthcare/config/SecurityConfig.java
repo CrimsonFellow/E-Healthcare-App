@@ -24,23 +24,22 @@ import java.util.Arrays;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf(csrf -> csrf.disable())  // Disable CSRF for APIs
-            .cors().and()  // Enable CORS with the provided configuration
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))  // Stateless session
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()  // Permit preflight requests
-                .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
-                .requestMatchers("/api/brands/**", "/api/prescriptions/**").hasRole("ADMIN")
-                .requestMatchers("/api/medicines/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers("/api/cart/**", "/api/orders/**").hasRole("USER")
-                .anyRequest().authenticated())
-            .httpBasic();  // Use HTTP Basic authentication
-
-        return http.build();
-    }
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	    http
+	        .csrf(csrf -> csrf.disable())  // Disable CSRF for APIs
+	        .cors(cors -> cors.disable())  // Disable CORS (you can enable it with specific config)
+	        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))  // Stateless session
+	        .authorizeHttpRequests(auth -> auth
+	            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()  // Permit preflight requests
+	            .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
+	            .requestMatchers("/api/brands/**", "/api/prescriptions/**").hasRole("ADMIN")
+	            .requestMatchers("/api/medicines/**").hasAnyRole("USER", "ADMIN")
+	            .requestMatchers("/api/cart/**", "/api/orders/**").hasRole("USER")
+	            .anyRequest().authenticated())
+	        .httpBasic(httpBasic -> httpBasic.disable());  // Disable HTTP Basic authentication
+	    return http.build();
+	}
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {

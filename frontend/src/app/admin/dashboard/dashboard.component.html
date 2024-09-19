@@ -1,0 +1,39 @@
+<!-- dashboard.component.html -->
+<div class="dashboard-container">
+  <!-- Logout Button -->
+  <div class="logout-container">
+    <button class="logout-button" (click)="logout()">Logout</button>
+  </div>
+
+  <!-- Menu Grid -->
+  <div class="menu-grid">
+    <a routerLink="/admin/medicines" class="menu-item">
+      <div class="menu-icon">
+        <!-- Optional: Insert icon here -->
+      </div>
+      <div class="menu-text">Manage Medicines</div>
+    </a>
+    <a routerLink="/admin/brands" class="menu-item">
+      <div class="menu-icon">
+        <!-- Optional: Insert icon here -->
+      </div>
+      <div class="menu-text">Manage Brands</div>
+    </a>
+    <a routerLink="/admin/symptoms" class="menu-item">
+      <div class="menu-icon">
+        <!-- Optional: Insert icon here -->
+      </div>
+      <div class="menu-text">Manage Symptoms</div>
+    </a>
+    <a routerLink="/admin/prescriptions" class="menu-item">
+      <div class="menu-icon">
+        <!-- Optional: Insert icon here -->
+      </div>
+      <div class="menu-text">Manage Prescriptions</div>
+    </a>
+  </div>
+</div>
+
+
+
+

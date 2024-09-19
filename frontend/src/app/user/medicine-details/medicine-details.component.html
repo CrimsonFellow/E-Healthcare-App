@@ -1,0 +1,33 @@
+<div class="medicine-details-container">
+  
+  <!-- Header Section -->
+  <header class="header">
+    <h1 class="component-title">Medicine Details</h1>
+    <button class="back-to-menu-btn" (click)="backToMenu()" aria-label="Back to Menu">&#8592; Back to Menu</button>
+  </header>
+  
+  <!-- Medicine Information -->
+  <div class="medicine-info" *ngIf="medicine; else loading">
+    <h2 class="medicine-name">{{ medicine.name }}</h2>
+    <p><strong>Brand:</strong> {{ medicine.brand?.name }}</p>
+    <p><strong>Description:</strong> {{ medicine.description }}</p>
+    <p><strong>Price:</strong> ${{ medicine.price }}</p>
+    
+    <!-- Quantity Selector -->
+    <div class="quantity-selector">
+      <label for="quantity">Quantity:</label>
+      <input id="quantity" type="number" [(ngModel)]="quantity" min="1" />
+    </div>
+    
+    <!-- Action Button -->
+    <button class="add-to-cart-btn" (click)="addToCart()">Add to Cart</button>
+  </div>
+  
+  <!-- Loading Template -->
+  <ng-template #loading>
+    <div class="loader"></div>
+  </ng-template>
+  
+</div>
+
+

@@ -1,0 +1,129 @@
+/* symptoms.component.css */
+
+/* General Styling */
+h2,
+h3 {
+  color: #343a40;
+  margin-bottom: 20px;
+}
+
+hr {
+  margin: 30px 0;
+}
+
+/* Back Button Styling */
+.back-button {
+  margin-bottom: 20px;
+  background-color: #6c757d; /* Gray color */
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  opacity: 0.9;
+}
+
+/* Form Styling */
+form {
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+form label {
+  display: inline-block;
+  width: 150px;
+  font-weight: bold;
+}
+
+form input {
+  padding: 8px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.button-group {
+  margin-top: 15px;
+}
+
+form button {
+  padding: 8px 15px;
+  margin-right: 5px;
+  background-color: #28a745; /* Green color */
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+form button[type='button'] {
+  background-color: #6c757d; /* Gray color for cancel button */
+}
+
+form button:hover {
+  opacity: 0.9;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead th {
+  background-color: #007bff; /* Blue color */
+  color: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+table tbody td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+/* Action Buttons */
+.edit-button {
+  padding: 6px 12px;
+  margin-right: 5px;
+  background-color: #17a2b8; /* Teal color for edit button */
+  border: none;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  opacity: 0.9;
+}
+
+.delete-button {
+  padding: 6px 12px;
+  background-color: #dc3545; /* Red color for delete button */
+  border: none;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  opacity: 0.9;
+}

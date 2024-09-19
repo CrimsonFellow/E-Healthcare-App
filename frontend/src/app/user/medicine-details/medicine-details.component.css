@@ -1,0 +1,167 @@
+/* Overall Container */
+.medicine-details-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #e8f5e9; /* Very Light Green Background */
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2e7d32; /* Dark Green */
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+}
+
+.component-title {
+  margin: 0;
+  font-size: 24px;
+}
+
+.back-to-menu-btn {
+  background-color: #66bb6a; /* Medium Green */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.back-to-menu-btn:hover {
+  background-color: #57a05a; /* Darker Green on Hover */
+}
+
+/* Medicine Information */
+.medicine-info {
+  background-color: white;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.medicine-name {
+  color: #2e7d32; /* Dark Green */
+  margin-bottom: 10px;
+}
+
+.quantity-selector {
+  margin: 15px 0;
+}
+
+.quantity-selector label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.quantity-selector input {
+  width: 60px;
+  padding: 5px;
+  border: 1px solid #a5d6a7; /* Light Green Border */
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.quantity-selector input:focus {
+  border-color: #66bb6a; /* Medium Green on Focus */
+  outline: none;
+}
+
+/* Action Buttons */
+.add-to-cart-btn {
+  background-color: #66bb6a; /* Medium Green */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #57a05a; /* Darker Green on Hover */
+}
+
+/* Loader Styles */
+.loader {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #2e7d32; /* Dark green */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin: 50px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .back-to-menu-btn {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .medicine-info {
+    padding: 15px;
+  }
+
+  .component-title {
+    font-size: 20px;
+  }
+
+  .medicine-name {
+    font-size: 22px;
+  }
+
+  .add-to-cart-btn {
+    width: 100%;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .medicine-details-container {
+    padding: 10px;
+  }
+
+  .medicine-info {
+    padding: 10px;
+  }
+
+  .quantity-selector label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .quantity-selector input {
+    width: 100%;
+  }
+
+  .add-to-cart-btn {
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+
+
+
+  

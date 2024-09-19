@@ -1,0 +1,62 @@
+<!-- symptoms.component.html -->
+<h2>Manage Symptoms</h2>
+
+<!-- Back to Dashboard Button -->
+<button class="back-button" (click)="goBack()">Back to Dashboard</button>
+
+<form (submit)="saveSymptom()">
+  <div>
+    <label for="name">Symptom Name:</label>
+    <input
+      id="name"
+      [(ngModel)]="newSymptom.name"
+      name="name"
+      placeholder="Enter symptom name"
+      required
+    />
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <input
+      id="description"
+      [(ngModel)]="newSymptom.description"
+      name="description"
+      placeholder="Enter description"
+      required
+    />
+  </div>
+  <div class="button-group">
+    <button type="submit">{{ isEditing ? 'Update' : 'Add' }} Symptom</button>
+    <button type="button" (click)="cancelEdit()" *ngIf="isEditing">
+      Cancel
+    </button>
+  </div>
+</form>
+
+<hr />
+
+<h3>Existing Symptoms</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Symptom Name</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let symptom of symptoms">
+      <td>{{ symptom.name }}</td>
+      <td>{{ symptom.description }}</td>
+      <td>
+        <button class="edit-button" (click)="editSymptom(symptom)">
+          Edit
+        </button>
+        <button class="delete-button" (click)="deleteSymptom(symptom)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+

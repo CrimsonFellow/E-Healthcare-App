@@ -1,0 +1,55 @@
+<!-- receipt.component.html -->
+<div class="receipt-container">
+  <div class="header">
+    <h1>E-Healthcare</h1>
+    <h2>Order Receipt</h2>
+  </div>
+
+  <!-- Receipt Information -->
+  <div class="receipt-info">
+    <p><strong>Receipt Number:</strong> {{ receiptNumber }}</p>
+    <p><strong>Date:</strong> {{ currentDate | date: 'mediumDate' }}</p>
+  </div>
+
+  <!-- Cart Items Table -->
+  <table class="items-table" *ngIf="cartItems.length > 0; else noItems">
+    <thead>
+      <tr>
+        <th>Medicine</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Unit Price ($)</th>
+        <th>Total Price ($)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems">
+        <td>{{ item.medicine.name }}</td>
+        <td>{{ item.medicine.description }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.medicine.price | number: '1.2-2' }}</td>
+        <td>{{ (item.medicine.price * item.quantity) | number: '1.2-2' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- No Items Template -->
+  <ng-template #noItems>
+    <p>No items in the cart.</p>
+  </ng-template>
+
+  <!-- Prescription Warning -->
+  <p *ngIf="requiresPrescription" class="prescription-warning">
+    <strong>Note:</strong> Some items in your order require a prescription. Please present a prescription upon delivery.
+  </p>
+
+  <!-- Total Price -->
+  <div class="total-price">
+    <p><strong>Total Amount Due:</strong> ${{ totalPrice | number: '1.2-2' }}</p>
+  </div>
+
+  <!-- Confirm Order Button -->
+  <div class="button-container">
+    <button class="confirm-button" (click)="confirmOrder()">Confirm Order</button>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+/* receipt.component.css */
+
+/* Container Styling */
+.receipt-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0fff4; /* Light green background */
+    border: 1px solid #cce5cc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .header h1 {
+    margin: 0;
+    color: #2f855a; /* Dark green color */
+    font-size: 36px;
+  }
+  
+  .header h2 {
+    margin-top: 10px;
+    color: #38a169; /* Medium green color */
+    font-size: 28px;
+  }
+  
+  /* Receipt Info */
+  .receipt-info {
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+  
+  .receipt-info p {
+    margin: 5px 0;
+  }
+  
+  /* Items Table */
+  .items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+  }
+  
+  .items-table th,
+  .items-table td {
+    border: 1px solid #cce5cc;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .items-table th {
+    background-color: #9ae6b4; /* Light green */
+    color: #22543d; /* Darker green */
+    font-weight: bold;
+  }
+  
+  .items-table tr:nth-child(even) td {
+    background-color: #e6fffa; /* Very light green */
+  }
+  
+  .items-table td {
+    background-color: #f0fff4;
+  }
+  
+  /* Prescription Warning */
+  .prescription-warning {
+    color: #d69e2e; /* Amber color for warning */
+    background-color: #fffaf0;
+    padding: 15px;
+    border: 1px solid #fbd38d;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  
+  /* Total Price */
+  .total-price {
+    text-align: right;
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .total-price p {
+    margin: 0;
+    color: #2f855a;
+    font-weight: bold;
+  }
+  
+  /* Button Styling */
+  .button-container {
+    text-align: center;
+  }
+  
+  .confirm-button {
+    background-color: #38a169;
+    color: #ffffff;
+    border: none;
+    padding: 15px 50px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .confirm-button:hover {
+    background-color: #2f855a;
+  }
+  

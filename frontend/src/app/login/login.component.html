@@ -1,0 +1,18 @@
+<h2 class="form-title">Login</h2>
+<form (submit)="onSubmit()" class="login-form">
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input id="username" [(ngModel)]="username" name="username" type="text" required />
+  </div>
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input id="password" [(ngModel)]="password" name="password" type="password" required />
+  </div>
+  <button type="submit" class="btn-submit">Login</button>
+</form>
+
+<!-- New section for register button -->
+<p class="register-prompt">
+  Don't have an account? 
+  <button (click)="navigateToRegister()" class="btn-register">Register here</button>
+</p>

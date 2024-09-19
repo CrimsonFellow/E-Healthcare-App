@@ -1,0 +1,58 @@
+<!-- prescriptions.component.html -->
+<h2>Manage Prescriptions</h2>
+
+<!-- Back to Dashboard Button -->
+<button class="back-button" (click)="goBack()">Back to Dashboard</button>
+
+<form (submit)="savePrescription()">
+  <div>
+    <label for="name">Prescription Name:</label>
+    <input
+      id="name"
+      [(ngModel)]="newPrescription.name"
+      name="name"
+      placeholder="Enter prescription name"
+      required
+    />
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <input
+      id="description"
+      [(ngModel)]="newPrescription.description"
+      name="description"
+      placeholder="Enter description"
+      required
+    />
+  </div>
+  <div class="button-group">
+    <button type="submit">{{ isEditing ? 'Update' : 'Add' }} Prescription</button>
+    <button type="button" (click)="cancelEdit()" *ngIf="isEditing">
+      Cancel
+    </button>
+  </div>
+</form>
+
+<hr />
+
+<h3>Existing Prescriptions</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Prescription Name</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prescription of prescriptions">
+      <td>{{ prescription.name }}</td>
+      <td>{{ prescription.description }}</td>
+      <td>
+        <!-- Added specific classes and labels to buttons -->
+        <button class="edit-button" (click)="editPrescription(prescription)">Edit</button>
+        <button class="delete-button" (click)="deletePrescription(prescription)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
