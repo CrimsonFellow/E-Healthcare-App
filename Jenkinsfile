@@ -1,51 +1,38 @@
 pipeline {
     agent any
-    environment {
-        DOCKER_USERNAME = 'crimsony'  
-        DOCKER_PASSWORD = 'Sp@rky1225chance'  
-    }
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'master', url: 'https://github.com/CrimsonFellow/healthcare-springboot-backend.git'
-            }
-        }
         stage('Build') {
             steps {
-                dir('healthcare-app') { 
-                    bat 'mvn clean package'
-                }
-            }
-        }
-        stage('Archive Artifacts') {
-            steps {
-                archiveArtifacts artifacts: 'healthcare-app/target/*.jar', fingerprint: true
-            }
-        }
-        stage('Docker Build') {
-            steps {
                 script {
-                    def backendImage = docker.build("${DOCKER_USERNAME}/springboot-backend")
+                    // Pull the latest code
+                    checkout scm
                 }
+                // Build Docker containers
+                bat '''
+                    docker-compose down
+                    docker-compose up --build -d
+                '''
             }
         }
-        stage('Docker Login') {
+        stage('Test') {
             steps {
-                script {
-                    docker.withRegistry('', "${DOCKER_USERNAME}-credentials") {
-                        sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
-                    }
-                }
+                // Add any tests you want to run here, e.g., unit tests
+                bat 'docker-compose exec springboot-app mvn test'
             }
         }
-        stage('Docker Push') {
+        stage('Deploy') {
             steps {
-                script {
-                    def backendImage = docker.image("${DOCKER_USERNAME}/springboot-backend")
-                    backendImage.push('latest')
-                }
+                // Deploy to a server or another environment
+                bat 'echo "Deploying to production..."'
             }
+        }
+    }
+    post {
+        always {
+            // Cleanup Docker containers after the build
+            bat 'docker-compose down --remove-orphans'
         }
     }
 }
+
 
