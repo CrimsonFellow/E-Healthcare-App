@@ -1,0 +1,40 @@
+version: '3'
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: sparky1225
+      MYSQL_DATABASE: medicare_db
+    ports:
+      - "3307:3306"
+    networks:
+      - healthcare-network
+    restart: always
+
+  springboot-app:
+    build: .
+    container_name: springboot-app
+    depends_on:
+      - mysql-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/medicare_db?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: sparky1225
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+    ports:
+      - "8081:8081"
+    networks:
+      - healthcare-network
+    restart: always
+
+networks:
+  healthcare-network:
+    driver: bridge
+
+
+
+
+
+
