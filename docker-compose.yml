@@ -8,6 +8,8 @@ services:
       MYSQL_DATABASE: medicare_db
     ports:
       - "3307:3306"
+    volumes:
+      - ./db_data/initial-data.sql:/docker-entrypoint-initdb.d/initial-data.sql  
     networks:
       - healthcare-network
     restart: always
