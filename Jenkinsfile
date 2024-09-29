@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        REGISTRY = "crimsony"    
+        REGISTRY = "crimsony"
         IMAGE_NAME = "e-healthcare-app"
-        DOCKER_HUB_CREDENTIALS = 'docker-hub-credentials'  
+        DOCKER_HUB_CREDENTIALS = 'docker-hub-credentials'
     }
 
     stages {
@@ -17,7 +17,7 @@ pipeline {
         stage('Build and Test Backend') {
             steps {
                 dir('backend') {
-                    sh './mvnw clean test'
+                    bat '.\\mvnw.cmd clean test'
                 }
             }
         }
@@ -25,40 +25,36 @@ pipeline {
         stage('Build and Test Frontend') {
             steps {
                 dir('frontend') {
-                    sh 'npm install'
-                    sh 'npm run test'  
+                    bat 'npm install'
+                    bat 'npm run test'
                 }
             }
         }
 
         stage('Build Docker Images') {
             steps {
-                script {
-                    sh 'docker-compose build'
-                }
+                bat 'docker-compose build'
             }
         }
 
         stage('Push Docker Images') {
             steps {
-                script {
-                    docker.withRegistry('', DOCKER_HUB_CREDENTIALS) {
-                        sh """
-                        docker tag healthcare-frontend $REGISTRY/healthcare-frontend:latest
-                        docker tag healthcare-backend $REGISTRY/healthcare-backend:latest
-
-                        docker push $REGISTRY/healthcare-frontend:latest
-                        docker push $REGISTRY/healthcare-backend:latest
-                        """
-                    }
+                withCredentials([usernamePassword(credentialsId: DOCKER_HUB_CREDENTIALS, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    bat """
+                    docker login -u %USERNAME% -p %PASSWORD%
+                    docker tag healthcare-frontend %REGISTRY%/healthcare-frontend:latest
+                    docker tag healthcare-backend %REGISTRY%/healthcare-backend:latest
+                    docker push %REGISTRY%/healthcare-frontend:latest
+                    docker push %REGISTRY%/healthcare-backend:latest
+                    """
                 }
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'docker-compose down'
-                sh 'docker-compose up -d'
+                bat 'docker-compose down'
+                bat 'docker-compose up -d'
             }
         }
     }
