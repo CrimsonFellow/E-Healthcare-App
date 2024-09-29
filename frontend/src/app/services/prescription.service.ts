@@ -1,7 +1,8 @@
 // prescription.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'; // Import HttpHeaders
+import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';  
 
 export interface Prescription {
   id?: number;
@@ -13,7 +14,8 @@ export interface Prescription {
   providedIn: 'root',
 })
 export class PrescriptionService {
-  private apiUrl = 'http://localhost:8081/api/prescriptions';
+  // Use environment.apiUrl for dynamic API base URL
+  private apiUrl = `${environment.apiUrl}/prescriptions`;
 
   constructor(private http: HttpClient) {}
 

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';  // Import HttpHeaders
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment'; 
 
 export interface Brand {
-  id?: number; 
+  id?: number;
   name: string;
   description: string;
 }
@@ -12,7 +13,8 @@ export interface Brand {
   providedIn: 'root',
 })
 export class BrandService {
-  private apiUrl = 'http://localhost:8081/api/brands'; 
+  // Use environment.apiUrl to construct the API URL dynamically
+  private apiUrl = `${environment.apiUrl}/brands`;
 
   constructor(private http: HttpClient) {}
 
@@ -55,5 +57,6 @@ export class BrandService {
     return this.http.delete<void>(`${this.apiUrl}/${brandId}`, { headers });
   }
 }
+
 
 

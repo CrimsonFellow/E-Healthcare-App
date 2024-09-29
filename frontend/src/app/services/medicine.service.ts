@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'; 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';  
 
 export interface Brand {
   id?: number;
@@ -17,13 +18,13 @@ export interface Medicine {
   prescriptionId: number | null;
 }
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class MedicineService {
-  private apiUrl = 'http://localhost:8081/api/medicines';
-  private brandApiUrl = 'http://localhost:8081/api/brands';  // URL for brand service
+  // Use environment.apiUrl for dynamic API base URL
+  private apiUrl = `${environment.apiUrl}/medicines`;
+  private brandApiUrl = `${environment.apiUrl}/brands`;  // Dynamic URL for brand service
 
   constructor(private http: HttpClient) {}
 
@@ -77,7 +78,8 @@ export class MedicineService {
   // Add a medicine to the cart (Assuming this will be handled by CartController)
   addToCart(medicine: Medicine): Observable<void> {
     const headers = this.getAuthHeaders();
-    return this.http.post<void>(`http://localhost:8081/api/cart`, medicine, { headers });
+    // Use the dynamic apiUrl instead of hardcoding localhost URL
+    return this.http.post<void>(`${environment.apiUrl}/cart`, medicine, { headers });
   }
 
   // Fetch all brands

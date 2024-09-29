@@ -54,6 +54,7 @@ public class SecurityConfig {
         config.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // Updated origin
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type", "X-Requested-With"));
+        config.setExposedHeaders(Arrays.asList("Authorization"));  // Expose headers to the frontend
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

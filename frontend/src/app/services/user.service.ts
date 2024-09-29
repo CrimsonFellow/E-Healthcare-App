@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment';  
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private loginApiUrl = 'http://localhost:8081/api/auth/login';
-  private registerApiUrl = 'http://localhost:8081/api/auth/register';
-  private logoutApiUrl = 'http://localhost:8081/api/auth/logout'; // Define logout API URL
+  // Use environment.apiUrl for dynamic API base URL
+  private loginApiUrl = `${environment.apiUrl}/auth/login`;
+  private registerApiUrl = `${environment.apiUrl}/auth/register`;
+  private logoutApiUrl = `${environment.apiUrl}/auth/logout`;  // Define logout API URL
 
   constructor(private http: HttpClient) {}
 
   // Login method
   login(username: string, password: string): Observable<any> {
     const loginData = { username, password };
-    return this.http.post<any>(this.loginApiUrl, loginData).pipe(
+    console.log('Sending login request:', loginData);  // Log request payload
+    return this.http.post<any>(this.loginApiUrl, loginData, this.getHttpOptions()).pipe(
       catchError((error) => {
         console.error('Login failed', error);
         return of(null);
@@ -38,7 +41,8 @@ export class UserService {
       email,
       role: 'user', 
     };
-    return this.http.post<any>(this.registerApiUrl, registerData).pipe(
+    console.log('Sending user registration request:', registerData);  // Log request payload
+    return this.http.post<any>(this.registerApiUrl, registerData, this.getHttpOptions()).pipe(
       catchError((error) => {
         console.error('User registration failed', error);
         return of(null);
@@ -53,7 +57,8 @@ export class UserService {
       password,
       role: 'admin', 
     };
-    return this.http.post<any>(this.registerApiUrl, registerData).pipe(
+    console.log('Sending admin registration request:', registerData);  // Log request payload
+    return this.http.post<any>(this.registerApiUrl, registerData, this.getHttpOptions()).pipe(
       catchError((error) => {
         console.error('Admin registration failed', error);
         return of(null);
@@ -73,7 +78,8 @@ export class UserService {
 
   // Log the user out
   logout(): Observable<any> {
-    return this.http.post<any>(`${this.logoutApiUrl}`, {}).pipe( // Use logoutApiUrl
+    console.log('Sending logout request');  // Log logout action
+    return this.http.post<any>(`${this.logoutApiUrl}`, {}, this.getHttpOptions()).pipe(
       tap(() => {
         // Clear user session data, tokens, etc.
         localStorage.removeItem('authToken');
@@ -96,7 +102,17 @@ export class UserService {
       return of(result as T);
     };
   }
+
+  // Method to set up HTTP options with the correct Content-Type header
+  private getHttpOptions() {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+  }
 }
+
 
 
 

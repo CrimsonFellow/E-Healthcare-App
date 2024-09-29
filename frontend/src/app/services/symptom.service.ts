@@ -1,7 +1,8 @@
 // symptom.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'; // Import HttpHeaders
+import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';  
 
 export interface Symptom {
   id?: number;
@@ -13,7 +14,8 @@ export interface Symptom {
   providedIn: 'root',
 })
 export class SymptomService {
-  private apiUrl = 'http://localhost:8081/api/symptoms';
+  // Use environment.apiUrl for dynamic API base URL
+  private apiUrl = `${environment.apiUrl}/symptoms`;
 
   constructor(private http: HttpClient) {}
 
@@ -71,4 +73,5 @@ export class SymptomService {
     );
   }
 }
+
 

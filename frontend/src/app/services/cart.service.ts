@@ -1,20 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'; 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Medicine } from './medicine.service';
+import { environment } from '../../environments/environment';  
 
 export interface CartItem {
-  id: number;             // Unique identifier for the cart item
-  medicine: Medicine;      // Each cart item contains a Medicine object
-  quantity: number;        // Quantity of the medicine in the cart
+  id: number;             
+  medicine: Medicine;      
+  quantity: number;   
 }
-
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private apiUrl = 'http://localhost:8081/api/cart';
+  // Use environment.apiUrl for dynamic API base URL
+  private apiUrl = `${environment.apiUrl}/cart`;
 
   constructor(private http: HttpClient) {}
 
@@ -61,5 +62,4 @@ export class CartService {
     const headers = this.getAuthHeaders();
     return this.http.delete<void>(`${this.apiUrl}/clear?userId=${userId}`, { headers });
   }
-  
 }
