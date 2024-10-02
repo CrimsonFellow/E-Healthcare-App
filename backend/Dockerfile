@@ -1,5 +1,5 @@
 # Step 1: Build the JAR file using Maven in a separate stage
-FROM maven:3.8.6-openjdk-21-slim AS build
+FROM maven:3.8.7-openjdk-21-slim AS build
 
 # Set the working directory inside the container for Maven build
 WORKDIR /app
