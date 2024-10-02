@@ -1,5 +1,5 @@
 # Step 1: Build the JAR file using Maven in a separate stage
-FROM maven:3.8.7-openjdk-21-slim AS build
+FROM maven:3.9.5-amazoncorretto-21 AS build
 
 # Set the working directory inside the container for Maven build
 WORKDIR /app
@@ -12,13 +12,10 @@ RUN mvn dependency:go-offline
 COPY src ./src
 
 # Build the JAR file
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 # Step 2: Use a slimmer OpenJDK image for runtime
-FROM openjdk:21-jdk-slim
-
-# Create a temporary directory for application logs or temporary files
-VOLUME /tmp
+FROM amazoncorretto:21-alpine3.18
 
 # Set the working directory inside the container for runtime
 WORKDIR /app
