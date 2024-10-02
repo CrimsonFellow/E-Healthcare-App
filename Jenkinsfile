@@ -18,6 +18,7 @@ pipeline {
             steps {
                 dir('backend') {
                     bat '.\\mvnw.cmd clean test'
+                    bat '.\\mvnw.cmd clean package'
                 }
             }
         }
