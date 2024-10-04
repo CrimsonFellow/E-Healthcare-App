@@ -5,6 +5,8 @@ pipeline {
         REGISTRY = "crimsony"
         IMAGE_NAME = "e-healthcare-app"
         DOCKER_HUB_CREDENTIALS = 'docker-hub-credentials'
+        EC2_SSH_CREDENTIALS = 'ec2-ssh-key'  
+        EC2_IP = '54.162.249.232'
     }
 
     stages {
@@ -52,11 +54,22 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy to EC2') {
             steps {
-                bat 'docker-compose down --remove-orphans'
-                bat 'docker-compose up -d'
+                sshagent(credentials: [EC2_SSH_CREDENTIALS]) {
+                    sh """
+                    ssh -o StrictHostKeyChecking=no ubuntu@${EC2_IP} '
+                    cd E-Healthcare-App || git clone https://github.com/CrimsonFellow/E-Healthcare-App.git
+                    cd E-Healthcare-App
+                    git pull
+                    sudo docker-compose pull
+                    sudo docker-compose down
+                    sudo docker-compose up -d
+                    '
+                    """
+                }
             }
         }
     }
 }
+
