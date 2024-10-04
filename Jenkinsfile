@@ -41,21 +41,21 @@ pipeline {
         }
 
        stage('Push Docker Images') {
-    steps {
-        script {
-            docker.withRegistry("https://${REGISTRY}", DOCKER_HUB_CREDENTIALS) {
-                parallel(
-                    pushFrontend: {
-                        docker.image('healthcare-frontend').push('latest')
-                    },
-                    pushBackend: {
-                        docker.image('healthcare-backend').push('latest')
-                    }
-                )
+        steps {
+            script {
+                docker.withRegistry("https://${REGISTRY}", DOCKER_HUB_CREDENTIALS) {
+                    parallel(
+                        pushFrontend: {
+                            docker.image('healthcare-frontend').push('latest')
+                        },
+                        pushBackend: {
+                            docker.image('healthcare-backend').push('latest')
+                        }
+                    )
+                }
             }
         }
     }
-}
 
 
         stage('Deploy to EC2') {
