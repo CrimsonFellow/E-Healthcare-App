@@ -6,7 +6,7 @@ pipeline {
         IMAGE_NAME = "e-healthcare-app"
         DOCKER_HUB_CREDENTIALS = 'docker-hub-credentials'
         EC2_PRIVATE_KEY = 'EC2_PRIVATE_KEY_FILE' 
-        EC2_IP = '172.31.35.23'
+        EC2_IP = '54.162.249.232'
     }
 
     stages {
