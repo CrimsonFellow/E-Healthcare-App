@@ -40,20 +40,6 @@ pipeline {
             }
         }
 
-        stage('Push Docker Images') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: DOCKER_HUB_CREDENTIALS, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    bat """
-                    docker login -u %USERNAME% -p %PASSWORD%
-                    docker tag healthcare-frontend %REGISTRY%/healthcare-frontend:latest
-                    docker tag healthcare-backend %REGISTRY%/healthcare-backend:latest
-                    docker push %REGISTRY%/healthcare-frontend:latest
-                    docker push %REGISTRY%/healthcare-backend:latest
-                    """
-                }
-            }
-        }
-
         stage('Deploy to EC2') {
             steps {
                 withCredentials([file(credentialsId: EC2_PRIVATE_KEY, variable: 'EC2_KEY_FILE')]) {
