@@ -40,23 +40,19 @@ pipeline {
             }
         }
 
-       stage('Push Docker Images') {
-        steps {
-            script {
-                docker.withRegistry("https://${REGISTRY}", DOCKER_HUB_CREDENTIALS) {
-                    parallel(
-                        pushFrontend: {
-                            docker.image('healthcare-frontend').push('latest')
-                        },
-                        pushBackend: {
-                            docker.image('healthcare-backend').push('latest')
-                        }
-                    )
+        stage('Push Docker Images') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: DOCKER_HUB_CREDENTIALS, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    bat """
+                    docker login -u %USERNAME% -p %PASSWORD%
+                    docker tag healthcare-frontend %REGISTRY%/healthcare-frontend:latest
+                    docker tag healthcare-backend %REGISTRY%/healthcare-backend:latest
+                    docker push %REGISTRY%/healthcare-frontend:latest
+                    docker push %REGISTRY%/healthcare-backend:latest
+                    """
                 }
             }
         }
-    }
-
 
         stage('Deploy to EC2') {
             steps {
