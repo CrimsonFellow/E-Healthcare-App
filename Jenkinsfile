@@ -42,7 +42,7 @@ pipeline {
 
         stage('Deploy to EC2') {
             steps {
-                withCredentials([file(credentialsId: EC2_PRIVATE_KEY, variable: 'EC2_KEY_FILE')]) {
+                withCredentials([file(credentialsId: 'EC2_PRIVATE_KEY_FILE', variable: 'EC2_KEY_FILE')]) {
                     bat """
                     @echo off
                     set EC2_USER=ubuntu
@@ -51,7 +51,7 @@ pipeline {
                     set COMMANDS=cd E-Healthcare-App || git clone https://github.com/CrimsonFellow/E-Healthcare-App.git && cd E-Healthcare-App && git pull && sudo docker-compose pull && sudo docker-compose down && sudo docker-compose up -d
 
                     echo Executing deployment commands on EC2 instance...
-                    ssh -o "StrictHostKeyChecking=no" -i "%PRIVATE_KEY_PATH%" %EC2_USER%@%EC2_HOST% "%COMMANDS%"
+                    ssh -o "StrictHostKeyChecking=no" -o "StrictModes=no" -i "%PRIVATE_KEY_PATH%" %EC2_USER%@%EC2_HOST% "%COMMANDS%"
                     """
                 }
             }
