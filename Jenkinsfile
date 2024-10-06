@@ -21,14 +21,16 @@ pipeline {
             }
         }
 
-        stage('Build and Test Backend') {
-            steps {
-                dir('backend') {
-                    sh './mvnw clean test'    // Replaced `bat` with `sh` for Linux
-                    sh './mvnw clean package' // Replaced `bat` with `sh` for Linux
-                }
+    stage('Build and Test Backend') {
+        steps {
+            dir('backend') {
+                sh 'chmod +x ./mvnw'  
+                sh './mvnw clean test'
+                sh './mvnw clean package'
             }
         }
+    }
+
 
         stage('Build and Test Frontend') {
             steps {
