@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         REGISTRY = "crimsony"
-        DOCKER_HUB_CREDENTIALS = 'docker-hub-credentials-id'
-        SSH_CREDENTIALS_ID = 'ec2-ssh-credentials' // ID from Jenkins credentials
+        DOCKER_HUB_CREDENTIALS = 'docker-hub-credentials'
+        SSH_CREDENTIALS_ID = 'ec2-ssh-key' // ID from Jenkins credentials
         EC2_IP = '54.162.249.232' // Replace with your EC2 instance's public IP
     }
 
