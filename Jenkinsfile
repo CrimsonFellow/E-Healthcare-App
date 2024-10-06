@@ -47,7 +47,7 @@ pipeline {
                     user: 'ubuntu', 
                     identityFile: '', 
                     credentialsId: SSH_CREDENTIALS_ID,
-                    port: 22 
+                    port: 22, 
                     allowAnyHosts: true
                 ], command: '''
                     cd E-Healthcare-App || git clone https://github.com/CrimsonFellow/E-Healthcare-App.git
