@@ -48,7 +48,7 @@ pipeline {
                     set EC2_USER=ubuntu
                     set EC2_HOST=%EC2_IP%
                     set PRIVATE_KEY_PATH=%EC2_KEY_FILE%
-                    set COMMANDS=cd E-Healthcare-App || git clone https://github.com/CrimsonFellow/E-Healthcare-App.git && cd E-Healthcare-App && git pull && sudo docker-compose pull && sudo docker-compose down && sudo docker-compose up -d
+                    set COMMANDS=cd E-Healthcare-App ^|^| git clone https://github.com/CrimsonFellow/E-Healthcare-App.git ^&^& cd E-Healthcare-App ^&^& git pull ^&^& sudo docker-compose pull ^&^& sudo docker-compose down ^&^& sudo docker-compose up -d
 
                     echo Adjusting permissions on the private key file...
                     icacls "%PRIVATE_KEY_PATH%" /inheritance:r
