@@ -1,6 +1,11 @@
 pipeline {
     agent { label 'ec2-agent' } // Ensures all stages run on EC2 Agent
 
+    tools {
+        git 'Default' // Ensure the pipeline uses the 'Default' Git configuration that you have set
+    }
+
+
     environment {
         REGISTRY = "crimsony"
         DOCKER_HUB_CREDENTIALS = 'docker-hub-credentials'
